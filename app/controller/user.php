@@ -84,7 +84,8 @@ class User {
 
         App::model('post');
         $Post           = new \Model\Post;
-        $data['posts']  = $Post->listing( $_SESSION['logged'] );
+        $data['list']['posts']  = $Post->listing( $_SESSION['logged'] );
+        $data['list']['posts_type'] = 'recentes';
         App::template( "home.html", $data );
     }
 

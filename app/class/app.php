@@ -18,6 +18,7 @@ class App {
         // separa os segmentos da URL
         $route = substr( $_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], "index.php")+9 );
         list(, $controller, $action) = explode("/", $route."//");
+        $action = str_replace("?".$_SERVER['QUERY_STRING'], "", $action);
 
         // chama o método do controller especificado
         if ( $controller and file_exists(APP_ROOT."/app/controller/$controller.php") ) {
@@ -134,6 +135,8 @@ class App {
     static function redirect( $url ) {
         header("Location: ".App::url($url));
     }
+
+
 }
 
 ?>

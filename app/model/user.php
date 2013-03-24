@@ -16,7 +16,7 @@ class User extends Model {
 
     /**
      * Grava as informações do objeto atual na tabela.
-     * @return boolean
+     * @return false|integer
      */
     function save() {
 

@@ -11,6 +11,10 @@ class Post {
      * @return void
      */
     function add() {
+        if ( !App::logged() ) {
+            App::redirect('');
+        }
+
         App::model('post');
         $Post = new \Model\Post;
 
@@ -24,10 +28,24 @@ class Post {
                 App::template( "msg.html", Array('msg' => "Ocorreu um problema salvando a postagem.") );
             }
         }
-
     }
 
 
+    /**
+     * Visualiza posts com uma determinada hashtag.
+     * @return void
+     */
+    function hashtag() {
+        if ( !App::logged() ) {
+            App::redirect('');
+        }
+
+        App::model('tag_post');
+        $TagPost        = new \Model\Tag_Post;
+        $data['list']['posts']  = $TagPost->hashtag_posts( urldecode($_GET['q']) );
+        $data['list']['posts_type'] = "por hashtag ".urldecode($_GET['q']);
+        App::template('home.html', $data);
+    }
 
 }
 ?>

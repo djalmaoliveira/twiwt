@@ -17,11 +17,40 @@ class Post extends Model {
 
     /**
      * Grava as informações do objeto atual na tabela.
-     * @return boolean
+     * @return false|integer
      */
     function save() {
+        \App::model('tag');
+        \App::model('tag_post');
+        $Tag     = new \Model\Tag;
+        $TagPost = new \Model\Tag_Post;
+
+        $this->content = strip_tags( $this->content );
+
+        // extrai as hashtags
+        //
+        $linhas     = explode(" ", $this->content);
+        $hashtags   = preg_grep("/(#\w+)/", $linhas);
+        foreach ($hashtags as $value) {
+            $Tag        = new \Model\Tag;
+            $Tag->tag   = $value;
+            $tags_id[]  = $Tag->save();
+        }
+
+        // salva post e hashtags associadas
+        //
         $this->unixtime = microtime(true);
-        return \Db::save( $this );
+        $post_id = \Db::save( $this );
+        if ( $post_id ) {
+            foreach ($tags_id as $value) {
+                $TagPost            = new \Model\Tag_Post;
+                $TagPost->post_id   = $post_id;
+                $TagPost->tag_id    = $value;
+                $TagPost->save();
+            }
+        }
+
+        return $post_id;
     }
 
 

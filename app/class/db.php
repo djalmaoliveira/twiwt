@@ -36,7 +36,7 @@ class Db {
     /**
      * Salva informações do objeto Modelo informado.
      * @param  object $Model Instância do modelo
-     * @return boolean
+     * @return false|integer  Retorna ID do registro adicionado caso de sucesso, senão false
      */
     static function save( $Model ) {
         // Extrai informações do Modelo
@@ -65,7 +65,7 @@ class Db {
 
         if ( ($q = $Pdo->prepare($sql)) ) {
             if ( ($ret = $q->execute( $params )) !== false ) {
-                return true;
+                return $Pdo->lastInsertId() ;
             }
         }
 //        print_r($q->errorinfo());

@@ -1,11 +1,18 @@
 <br/>
-Postagens:
+Postagens <?=$posts_type?>
 <div>
 
     <?  if ( $posts ) {
             while( ($post = $posts->fetch()) ) { ?>
-            <div style='border:1px solid gray; margin-top:10px'>
-                <div><strong><?=$post['user_name']?> em <?=date('d/m/Y H:i:s', $post['unixtime'])?></strong></div>
+            <div style='border:1px solid gray; margin-top:10px;background-color:#CCCAAA'>
+                <div><strong><?=$post['user_name']?> <small>em <?=date('d/m/Y H:i:s', $post['unixtime'])?></small></strong></div>
+                <?
+                    $lines     = explode(" ", $post['content']);
+                    $hashtags   = preg_grep("/(#\w+)/", $lines);
+                    foreach ($hashtags as  $hashtag) {
+                        $post['content'] = str_replace( $hashtag, "<a href=".App::url('post/hashtag?q=').urlencode($hashtag).">$hashtag</a>", $post['content'] );
+                    }
+                ?>
                 <div class=""><em><?=$post['content']?></em></div>
             </div>
         <?  }?>
