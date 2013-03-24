@@ -1,8 +1,10 @@
-<fieldset>
-    <lengend class="">Cadastro de novo usuário</lengend>
-    <form method='post' action='register'>
+
+<form method='post' action='register'>
+    <fieldset>
+        <legend class="">Cadastro de novo usuário</legend>
         <?App::view('model.html', $model)?>
         <br/>
         <input type='submit' name='submit' value="Cadastrar" />
-    </form>
-</fieldset>
+
+    </fieldset>
+</form>

@@ -6,6 +6,11 @@
 </head>
 <body>
 
-<a href='<?=App::url('user/register')?>'>Cadastre-se</a>
-<a href='<?=App::url('user/login')?>'>Autentique-se</a>
 <a href='<?=App::url('post/search')?>'>Procure</a>
+<a href='<?=App::url('user/register')?>'>Cadastre-se</a>
+<?  if ( !App::logged() ) { ?>
+    <a href='<?=App::url('user/login')?>'>Autentique-se</a>
+<?  } else { ?>
+    <a href='<?=App::url('user/logout')?>'>Sair</a>
+<?  } ?>
+<div></div>

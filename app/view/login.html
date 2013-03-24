@@ -1,0 +1,19 @@
+<form method='post' action='login' onsubmit='return login();' id='frm'>
+    <fieldset>
+        <legend class="">Autenticação do usuário</legend>
+
+            <?App::view('model.html', $model)?>
+            <br/>
+            <input type='submit' name='submit' value="Identificar" />
+
+    </fieldset>
+</form>
+
+<script src="<?=App::url('js/core.js', true)?>"></script>
+<script src="<?=App::url('js/sha1.js', true)?>"></script>
+<script>
+    function login() {
+        var password    = document.getElementById('password');
+        password.value  = CryptoJS.SHA1(password.value);
+    }
+</script>

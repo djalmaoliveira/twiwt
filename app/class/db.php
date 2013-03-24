@@ -26,6 +26,7 @@ class Db {
         try {
             $dsn = "mysql:dbname={$config['db_name']};host={$config['host']}";
             self::$pdo = new PDO($dsn, $config['user'], $config['password']);
+            self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo 'Verifique a conexão ao banco de dados: ' . $e->getMessage();
         }
@@ -73,6 +74,22 @@ class Db {
 
     }
 
+    /**
+     * Executa uma consulta ao banco de dados de acordo com o $sql e $params especificados.
+     * @param  string $sql
+     * @param  array $params
+     * @return PDOStatement | false
+     */
+    static function query($sql, $params) {
+        $Pdo    = self::instance();
+
+        if ( ($q = $Pdo->prepare($sql)) ) {
+            if ( ($ret = $q->execute( $params )) !== false ) {
+                return $q;
+            }
+        }
+        return false;
+    }
 
 }
 

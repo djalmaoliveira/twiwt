@@ -64,9 +64,10 @@ class App {
     /**
      * Cria uma URL para o $path_to especificado.
      * @param  string $path_to  Caminho relativo à aplicalção da url
+     * @param  boolean $static True se url gerada é um arquivo estático, default false
      * @return string
      */
-    static function url( $path_to ) {
+    static function url( $path_to, $static=false ) {
         // adiciona index.php se não existe na url base
         if ( strpos($_SERVER['REQUEST_URI'], "index.php") == false ) {
             $_SERVER['REQUEST_URI'] .= 'index.php'   ;
@@ -78,7 +79,11 @@ class App {
             $scheme = 'https://';
         }
 
-        return $scheme.$_SERVER['SERVER_NAME'].$path.'index.php/'.$path_to;
+        if ( $static ) {
+            return $scheme.$_SERVER['SERVER_NAME'].$path.$path_to;
+        } else {
+            return $scheme.$_SERVER['SERVER_NAME'].$path.'index.php/'.$path_to;
+        }
     }
 
     /**
@@ -110,6 +115,16 @@ class App {
         }
     }
 
+    /**
+     * Verifica se usuário está logado
+     * @return boolean
+     */
+    static function logged() {
+        if ( isset($_SESSION['logged']) )  {
+            return $_SESSION['logged'];
+        }
+        return false;
+    }
 }
 
 ?>
