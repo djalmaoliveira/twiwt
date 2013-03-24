@@ -51,9 +51,9 @@ class User {
         //
         if ( App::method('post') ) {
             $User->fill( $_POST['user'] );
-            if ( $User->autenticar() ) {
-                $_SESSION['logged'] = true;
-                header("Location: ".App::url(''));
+            if ( ($user_id = $User->autenticar()) ) {
+                $_SESSION['logged'] = $user_id;
+                header("Location: ".App::url('user/home'));
             } else {
                 $_SESSION['logged'] = false;
                 App::template( "msg.html", Array('msg' => "Login/senha incorretos ou não existentes.") );
@@ -71,6 +71,37 @@ class User {
         $_SESSION['logged'] = false;
         header("Location: ".App::url(''));
     }
+
+    /**
+     * Página inicial do usuário logado
+     * @return void
+     */
+    function home() {
+        $data = Array();
+        App::template( "home.html", $data );
+    }
+
+    /**
+     * Salva Postagem do usuário
+     * @return [type] [description]
+     */
+    function add() {
+
+        // grava post
+        //
+        if ( App::method('post') ) {
+            $User->fill( $_POST['user'] );
+            if ( ($user_id = $User->autenticar()) ) {
+                $_SESSION['logged'] = $user_id;
+                header("Location: ".App::url('user/home'));
+            } else {
+                $_SESSION['logged'] = false;
+                App::template( "msg.html", Array('msg' => "Login/senha incorretos ou não existentes.") );
+            }
+        }
+
+    }
+
 
 }
 ?>

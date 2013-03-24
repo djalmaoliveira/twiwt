@@ -1,0 +1,16 @@
+<form method='post' action='<?=App::url('post/add')?>'>
+    <fieldset>
+        <legend class="">Postar</legend>
+        <input      type='hidden' name='post[user_id]' value='<?=$_SESSION['logged']?>'/>
+        <textarea   name='post[content]' cols='60' rows='3' maxlength="140" ></textarea>
+        <br/>
+        <input type='submit' name='submit' value="Enviar postagem" />
+    </fieldset>
+</form>
+
+<div>
+
+
+
+
+</div>
