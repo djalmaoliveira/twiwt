@@ -116,7 +116,7 @@ class App {
     }
 
     /**
-     * Verifica se usuário está logado
+     * Verifica se usuário está logado.
      * @return boolean
      */
     static function logged() {
@@ -124,6 +124,15 @@ class App {
             return $_SESSION['logged'];
         }
         return false;
+    }
+
+    /**
+     * Redireciona usuário para uma URL especificada.
+     * @param  string $url
+     * @return void
+     */
+    static function redirect( $url ) {
+        header("Location: ".App::url($url));
     }
 }
 

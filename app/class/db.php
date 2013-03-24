@@ -68,8 +68,8 @@ class Db {
                 return true;
             }
         }
-        print_r($q->errorinfo());
-        print_r($Pdo->errorinfo());
+//        print_r($q->errorinfo());
+//        print_r($Pdo->errorinfo());
         return false;
 
     }

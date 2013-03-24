@@ -50,5 +50,17 @@ class User extends Model {
         return false;
     }
 
+    /**
+     * Retorna lista de usuários.
+     * @return PDOStatement | false
+     */
+    function usuarios() {
+        $q   = \Db::query( "select * from user", Array() );
+        if ( $q ) {
+            return $q;
+        }
+        return false;
+    }
+
 }
 ?>

@@ -3,6 +3,7 @@ namespace Model;
 \App::loadClass( APP_ROOT.'/app/class/', 'model' );
 \App::loadClass( APP_ROOT.'/app/class/', 'db' );
 
+
 /**
  * Classe de modelo Post.
  * Modelo da tabela Post.
@@ -14,7 +15,6 @@ class Post extends Model {
     public $unixtime;
     public $user_id;
 
-
     /**
      * Grava as informações do objeto atual na tabela.
      * @return boolean
@@ -23,6 +23,7 @@ class Post extends Model {
         $this->unixtime = microtime(true);
         return \Db::save( $this );
     }
+
 
 }
 ?>

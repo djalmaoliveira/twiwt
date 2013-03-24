@@ -1,0 +1,13 @@
+<form method='post' action="<?=App::url('user/follow')?>">
+    <fieldset>
+        <legend>Lista de Usuários</legend>
+        <div>
+            <?  while( ($user = $rs->fetch()) ) {?>
+                <div>
+                    <div style='width:150px;float:left'><?=$user['user_name']?></div>
+                    <input type='submit' name='user[<?=$user['id']?>]' value="Seguir">
+                </div>
+            <?  }   ?>
+        </div>
+    </fieldset>
+</form>
