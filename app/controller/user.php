@@ -64,7 +64,7 @@ class User {
 
 
     /**
-     * Desconecta usuário
+     * Desconecta usuário.
      * @return void
      */
     function logout() {
@@ -73,7 +73,7 @@ class User {
     }
 
     /**
-     * Página inicial do usuário logado
+     * Página inicial do usuário logado.
      * @return void
      */
     function home() {
@@ -81,12 +81,16 @@ class User {
         if ( !App::logged() ) {
             App::redirect('');
         }
+
+        App::model('post');
+        $Post           = new \Model\Post;
+        $data['posts']  = $Post->listing( $_SESSION['logged'] );
         App::template( "home.html", $data );
     }
 
     /**
      * Salva Postagem do usuário
-     * @return [type] [description]
+     * @return void
      */
     function add() {
         if ( !App::logged() ) {

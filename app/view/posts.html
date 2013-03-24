@@ -1,0 +1,14 @@
+<br/>
+Postagens:
+<div>
+
+    <?  if ( $posts ) {
+            while( ($post = $posts->fetch()) ) { ?>
+            <div style='border:1px solid gray; margin-top:10px'>
+                <div><strong><?=$post['user_name']?> em <?=date('d/m/Y H:i:s', $post['unixtime'])?></strong></div>
+                <div class=""><em><?=$post['content']?></em></div>
+            </div>
+        <?  }?>
+    <?  }?>
+
+</div>

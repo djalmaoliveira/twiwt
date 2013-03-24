@@ -31,7 +31,7 @@ class User_Follow extends Model {
      * Verifica se $user_id já está seguindo $user_following_id especificados.
      * @param  integer $user_id
      * @param  integer $user_following_id
-     * @return void
+     * @return boolean
      */
     function following($user_id, $user_following_id) {
         $sql = "select * from user_follow where user_id=:user_id and user_following_id=:user_following_id";
@@ -42,6 +42,20 @@ class User_Follow extends Model {
         return false;
     }
 
+
+    /**
+     * Retorna lista de usuários seguidos.
+     * @param  integer $user_id
+     * @return PDOStatement | false
+     */
+    function follows( $user_id ) {
+        $sql = "select * from user_follow where user_id=:user_id";
+        $rs = \Db::query( $sql, Array(':user_id'=> $user_id) );
+        if ( $rs  ) {
+            return $rs;
+        }
+        return false;
+    }
 
 }
 ?>

@@ -8,7 +8,7 @@ class Post {
 
     /**
      * Salva Postagem do usuário
-     * @return [type] [description]
+     * @return void
      */
     function add() {
         App::model('post');
@@ -26,6 +26,7 @@ class Post {
         }
 
     }
+
 
 
 }
