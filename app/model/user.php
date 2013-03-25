@@ -31,7 +31,7 @@ class User extends Model {
      * Retorna ID do usuário se conseguir encontrar, senão false.
      * @return false | integer
      */
-    function autenticar() {
+    function authentication() {
 
         // procura usuário
         //
@@ -54,13 +54,26 @@ class User extends Model {
      * Retorna lista de usuários.
      * @return PDOStatement | false
      */
-    function usuarios() {
+    function users() {
         $q   = \Db::query( "select * from user", Array() );
         if ( $q ) {
             return $q;
         }
         return false;
     }
+
+    /**
+     * Retorna lista de usuários especificados.
+     * @return PDOStatement | false
+     */
+    function usersById( $users ) {
+        $q   = \Db::query( "select id, user_name from user where id in (".implode(',', $users).")", Array() );
+        if ( $q ) {
+            return $q;
+        }
+        return false;
+    }
+
 
 }
 ?>

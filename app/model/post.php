@@ -75,7 +75,8 @@ class Post extends Model {
         $sql = "
             select
                 p.*,
-                u.*
+                u.*,
+                p.id as post_id
             from
                 post p left join user u on p.user_id=u.id
             where

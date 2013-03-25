@@ -51,7 +51,7 @@ class User {
         //
         if ( App::method('post') ) {
             $User->fill( $_POST['user'] );
-            if ( ($user_id = $User->autenticar()) ) {
+            if ( ($user_id = $User->authentication()) ) {
                 $_SESSION['logged'] = $user_id;
                 header("Location: ".App::url('user/home'));
             } else {
@@ -102,7 +102,7 @@ class User {
         //
         if ( App::method('post') ) {
             $User->fill( $_POST['user'] );
-            if ( ($user_id = $User->autenticar()) ) {
+            if ( ($user_id = $User->authentication()) ) {
                 $_SESSION['logged'] = $user_id;
                 App:redirect('user/home');
             } else {
@@ -124,7 +124,7 @@ class User {
 
         App::model('user');
         $User   = new \Model\User;
-        $rs     = $User->usuarios();
+        $rs     = $User->users();
         if ( $rs ) {
             $data['rs'] = $rs;
             App::template('users.html', $data);

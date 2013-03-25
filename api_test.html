@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste API</title>
+    <script src="js/core.js"></script>
+    <script src="js/sha1.js"></script>
+    <script>
+        function cript(elem) {
+            var password    = document.getElementById(elem);
+            password.value  = CryptoJS.SHA1(password.value);
+        }
+    </script>
+</head>
+<body>
+
+    <form action="index.php/api/user_posts" method='post' onsubmit='cript("password_posts")'>
+        <fieldset>
+            <legend>Teste API Posts de usuário</legend>
+        Usuário: <input type='text' name='user_name'><br/>
+        Senha: <input type='password' name='password' id='password_posts'><br/>
+        <input type='submit' value="Testar Lista de posts do usuário">
+        </fieldset>
+    </form>
+
+
+    <form action="index.php/api/followed_users" method='post' onsubmit='cript("password_followed")'>
+        <fieldset>
+            <legend>Teste API Usuários seguidos</legend>
+        Usuário: <input type='text' name='user_name'><br/>
+        Senha: <input type='password' name='password' id='password_followed'><br/>
+        <input type='submit' value="Testar Lista de usuários seguidos">
+        </fieldset>
+    </form>
+
+</body>
+</html>
