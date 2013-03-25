@@ -41,8 +41,8 @@ class Post {
         }
 
         App::model('tag_post');
-        $TagPost        = new \Model\Tag_Post;
-        $data['list']['posts']  = $TagPost->hashtag_posts( urldecode($_GET['q']) );
+        $TagPost                    = new \Model\Tag_Post;
+        $data['list']['posts']      = $TagPost->hashtag_posts( urldecode($_GET['q']) );
         $data['list']['posts_type'] = "por hashtag ".urldecode($_GET['q']);
         App::template('home.html', $data);
     }

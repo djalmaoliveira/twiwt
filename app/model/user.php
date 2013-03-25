@@ -63,7 +63,7 @@ class User extends Model {
     }
 
     /**
-     * Retorna lista de usuários especificados.
+     * Retorna lista de usuários especificados por id.
      * @return PDOStatement | false
      */
     function usersById( $users ) {

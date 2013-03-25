@@ -37,10 +37,14 @@ class Api {
                 $Follow  = new \Model\User_Follow;
                 $rs      = $Follow->follows( $user_id );
                 if ( $rs ) {
+
+                    // ids usuários seguidos
                     $follows = Array();
                     while( ($user = $rs->fetch()) ) {
                         $follows[] = $user['user_following_id'];
                     }
+
+                    // lista de usuários
                     $User  = new \Model\User;
                     $users = $User->usersById( $follows );
                     if ( $users ) {

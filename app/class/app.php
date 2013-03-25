@@ -64,7 +64,7 @@ class App {
 
     /**
      * Cria uma URL para o $path_to especificado.
-     * @param  string $path_to  Caminho relativo à aplicalção da url
+     * @param  string $path_to  Caminho relativo à aplicação da url
      * @param  boolean $static True se url gerada é um arquivo estático, default false
      * @return string
      */

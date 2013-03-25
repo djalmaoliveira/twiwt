@@ -7,7 +7,4 @@ session_start();
 App::routing();
 
 
-//print_r($_SERVER);
-//
-// print_r($_SESSION);
 ?>

@@ -41,7 +41,7 @@ class Db {
     static function save( $Model ) {
         // Extrai informações do Modelo
         //
-        $class  = get_class($Model);
+        $class      = get_class($Model);
         $namespaces = explode('\\', $class);
         end($namespaces);
 
@@ -52,14 +52,13 @@ class Db {
         // prepara dados
         //
         foreach ( $fields as $key => $value ) {
-            $param = ":".$key;
+            $param          = ":".$key;
             $params[$param] = $value;
         }
 
-        // Adiciona um novo ou atualiza existente
+        // Adiciona um novo
         //
         if ( !$fields['id'] ) {
-            //$params['id'] = 0;
             $sql = "insert into $table (".implode(', ', array_keys($fields) ).") values (".implode(', ', array_keys($params)).")";
         }
 
